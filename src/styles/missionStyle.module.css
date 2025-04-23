@@ -1,0 +1,13 @@
+.textStyle {
+    font-family: "poppins", Sans-serif;
+    font-weight: 600;
+    line-height: 42px;
+    color: #D1AD3C; 
+  }
+
+  .headingStyle { 
+    color: #2a486c;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+  }

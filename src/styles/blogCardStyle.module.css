@@ -1,0 +1,55 @@
+.textStyle {
+    font-family: "poppins", Sans-serif;
+    font-weight: 600;
+    line-height: 42px;
+    color: #D1AD3C; 
+  }
+
+  .headingStyle { 
+    color: #2a486c;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+
+
+  .cardContainer { 
+    color: #555;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    font-family: "poppins", Sans-serif !important;
+    padding-top: 6px;
+    box-shadow: -1px 5px 13px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    background: white; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .cardContainer:hover {
+    transform: scale(0.98); /* Slightly zoom out (scale down) */
+    box-shadow: -1px 5px 20px rgba(0, 0, 0, 0.3); /* Optional: Enhance shadow on hover */
+  }
+  
+  .circleCardStyle {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    opacity: 0.9;
+    border-color: #D1AD3C !important;
+    border-width: 2px;
+    transition: border-width 0.2s ease-in;
+    
+  }
+
+  
+  .cardContainer:hover .circleCardStyle {
+    box-shadow: 0 5px 20px rgba(38, 38, 38, 0.2);
+    border-color: #D1AD3C !important;
+    /* opacity: 0.8; */
+    border-width: 3px;
+    /* background-color: #D1AD3C !important;  */
+  }
+  

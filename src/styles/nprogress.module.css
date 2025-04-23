@@ -1,0 +1,13 @@
+.nprogress .bar {
+  background: linear-gradient(90deg, #ff4757, #ff6b81) !important;
+}
+
+/* For rounded corners */
+.nprogress .bar {
+  border-radius: 0 3px 3px 0;
+}
+
+/* For a thicker bar */
+.nprogress .bar {
+  height: 8px !important;
+}
