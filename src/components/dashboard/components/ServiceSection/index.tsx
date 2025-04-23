@@ -2,11 +2,9 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import styles from "@/styles/blogCardStyle.module.css";
-import QuranRehal from "@images/quran-rehal.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getImagePath } from "@/helpers/utils";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export default function Services() {
   const router = useRouter();
@@ -14,7 +12,7 @@ export default function Services() {
   interface ContentItem {
     title: string;
     description: string;
-    icon: string | StaticImport;
+    icon: string;
     slug: string;
   }
   const services = [
@@ -22,28 +20,28 @@ export default function Services() {
       title: "Quran",
       description:
         "Explore the meticulous process of the Quran's compilation and collation, ensuring its authenticity and preservation.",
-      icon: getImagePath(QuranRehal) || "",
+      icon: getImagePath("quran-rehal.svg"),
       slug: "quran-compilation",
     },
     {
       title: "Community Services",
       description:
         "Join our vibrant community and participate in various activities",
-      icon: getImagePath(QuranRehal) || "",
+      icon: getImagePath("quran-rehal.svg"),
       slug: "",
     },
     {
       title: "Charity & Support",
       description:
         "Support those in need through our various charitable programs",
-      icon: getImagePath(QuranRehal) || "",
+      icon: getImagePath("quran-rehal.svg"),
       slug: "",
     },
     {
       title: "Charity & Support",
       description:
         "Support those in need through our various charitable programs",
-      icon: getImagePath(QuranRehal) || "",
+      icon: getImagePath("quran-rehal.svg"),
       slug: "",
     },
   ];

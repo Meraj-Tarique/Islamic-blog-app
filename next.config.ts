@@ -7,13 +7,16 @@ const nextConfig: NextConfig = {
     domains: [
       "hebbkx1anhila5yf.public.blob.vercel-storage.com",
       "mlena6qa4grg.i.optimole.com",
-      "https://islamic-blog-app-spzz.vercel.app"
     ],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "s3.amazonaws.com",
         pathname: "/my-bucket/**",
+      },
+      {
+        protocol: "https",
+        hostname: "islamic-blog-app-spzz.vercel.app",
       },
     ],
   },

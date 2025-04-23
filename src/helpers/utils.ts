@@ -5,9 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const getImagePath = (imageName: HTMLImageElement) => {
+export const getImagePath = (imageName: string) => {
   if (process.env.NODE_ENV === "development") {
-    return `@images/${imageName}`;
+    return `/images/${imageName}`;
   } else {
     return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/${imageName}`;
   }

@@ -34,7 +34,7 @@
         "src/app/*"
       ],
       "@images/*": [
-        "public/assets/images/*"
+        "public/images/*"
       ],
       "@utils/*": [
         "src/helpers/*"
