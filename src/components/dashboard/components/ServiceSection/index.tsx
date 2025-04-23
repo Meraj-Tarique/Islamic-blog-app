@@ -14,11 +14,8 @@ export default function Services() {
   interface ContentItem {
     title: string;
     description: string;
-    icon: string | StaticImport; // Or string | StaticImport if you might use direct imports
+    icon: string | StaticImport;
     slug: string;
-    // Add other optional properties if needed
-    // featured?: boolean;
-    // tags?: string[];
   }
   const services = [
     {
