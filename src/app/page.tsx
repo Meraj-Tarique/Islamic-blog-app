@@ -1,5 +1,5 @@
 import Head from "next/head";
-// import HomePage from "@/components/dashboard/index";
+import HomePage from "@/components/dashboard/index";
 
 export default function Home() {
   return (
@@ -21,8 +21,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen">
-        Hello World
-        {/* <HomePage /> */}
+        <HomePage />
       </main>
     </div>
   );
