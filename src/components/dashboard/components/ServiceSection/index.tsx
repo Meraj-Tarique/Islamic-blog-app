@@ -80,7 +80,7 @@ export default function Services() {
                 >
                   <Image
                     alt="quran image"
-                    src={service?.icon || ""}
+                    src={service?.icon}
                     height={50}
                     width={50}
                   />
