@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "@/styles/missionStyle.module.css";
+import { getBaseUrl } from "@/helpers/utils";
 
 interface SubSubCategory {
   subHeading?: string;
@@ -29,10 +30,9 @@ interface Blog {
 }
 
 async function fetchBlog(slug: string): Promise<Blog | null> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = getBaseUrl();
 
   const apiUrl = `${baseUrl}/api/blogs/${slug}`;
-  console.log({ apiUrl });
 
   try {
     const res = await fetch(apiUrl, {

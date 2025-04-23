@@ -5,6 +5,7 @@ import styles from "@/styles/blogCardStyle.module.css";
 import QuranRehal from "@images/quran-rehal.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { getImagePath } from "@/helpers/utils";
 
 export default function Services() {
   const router = useRouter();
@@ -13,28 +14,28 @@ export default function Services() {
       title: "Quran",
       description:
         "Explore the meticulous process of the Quran's compilation and collation, ensuring its authenticity and preservation.",
-      icon: QuranRehal,
+      icon: getImagePath(QuranRehal),
       slug: "quran-compilation",
     },
     {
       title: "Community Services",
       description:
         "Join our vibrant community and participate in various activities",
-      icon: QuranRehal,
+      icon: getImagePath(QuranRehal),
       slug: "",
     },
     {
       title: "Charity & Support",
       description:
         "Support those in need through our various charitable programs",
-      icon: QuranRehal,
+      icon: getImagePath(QuranRehal),
       slug: "",
     },
     {
       title: "Charity & Support",
       description:
         "Support those in need through our various charitable programs",
-      icon: QuranRehal,
+      icon: getImagePath(QuranRehal),
       slug: "",
     },
   ];
@@ -43,8 +44,7 @@ export default function Services() {
     router.push(`/blogs/${slug}`);
   };
 
-  console.log("rebuild");
-  
+
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">

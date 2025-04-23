@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     domains: [
       "hebbkx1anhila5yf.public.blob.vercel-storage.com",
       "mlena6qa4grg.i.optimole.com",
+      "your-vercel-app-name.vercel.app"
     ],
     remotePatterns: [
       {
