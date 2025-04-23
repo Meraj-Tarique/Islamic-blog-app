@@ -1,10 +1,10 @@
-import { NextConfig } from 'next';
+import { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  output: "standalone",
   images: {
     domains: [
-      "localhost",
       "hebbkx1anhila5yf.public.blob.vercel-storage.com",
       "mlena6qa4grg.i.optimole.com",
     ],
@@ -12,9 +12,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "s3.amazonaws.com",
-        port: "",
         pathname: "/my-bucket/**",
-        search: "",
       },
     ],
   },
@@ -23,7 +21,6 @@ const nextConfig: NextConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
-
     return config;
   },
 };
