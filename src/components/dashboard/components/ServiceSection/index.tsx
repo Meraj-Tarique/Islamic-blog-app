@@ -6,36 +6,47 @@ import QuranRehal from "@images/quran-rehal.svg";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { getImagePath } from "@/helpers/utils";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export default function Services() {
   const router = useRouter();
+
+  interface ContentItem {
+    title: string;
+    description: string;
+    icon: string | StaticImport; // Or string | StaticImport if you might use direct imports
+    slug: string;
+    // Add other optional properties if needed
+    // featured?: boolean;
+    // tags?: string[];
+  }
   const services = [
     {
       title: "Quran",
       description:
         "Explore the meticulous process of the Quran's compilation and collation, ensuring its authenticity and preservation.",
-      icon: getImagePath(QuranRehal),
+      icon: getImagePath(QuranRehal) || "",
       slug: "quran-compilation",
     },
     {
       title: "Community Services",
       description:
         "Join our vibrant community and participate in various activities",
-      icon: getImagePath(QuranRehal),
+      icon: getImagePath(QuranRehal) || "",
       slug: "",
     },
     {
       title: "Charity & Support",
       description:
         "Support those in need through our various charitable programs",
-      icon: getImagePath(QuranRehal),
+      icon: getImagePath(QuranRehal) || "",
       slug: "",
     },
     {
       title: "Charity & Support",
       description:
         "Support those in need through our various charitable programs",
-      icon: getImagePath(QuranRehal),
+      icon: getImagePath(QuranRehal) || "",
       slug: "",
     },
   ];
@@ -43,7 +54,6 @@ export default function Services() {
   const handleBlogsRoute = (slug: string) => {
     router.push(`/blogs/${slug}`);
   };
-
 
   return (
     <section className="py-20 bg-gray-50">
@@ -55,7 +65,7 @@ export default function Services() {
         </h2>
 
         <div className="grid md:grid-cols-4 gap-6 justify-center items-center text-center">
-          {services.map((service, index) => (
+          {services.map((service: ContentItem, index: number) => (
             <div
               onClick={() => handleBlogsRoute(service.slug)}
               key={index}
@@ -70,7 +80,7 @@ export default function Services() {
                 >
                   <Image
                     alt="quran image"
-                    src={service?.icon || null}
+                    src={service?.icon || ""}
                     height={50}
                     width={50}
                   />
