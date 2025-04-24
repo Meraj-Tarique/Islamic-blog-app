@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
     domains: [
       "hebbkx1anhila5yf.public.blob.vercel-storage.com",
       "mlena6qa4grg.i.optimole.com",
+      'islamic-blog-app-spzz.vercel.app',
+      'islamic-blog-app-spzz-git-main-merajtariqs-projects.vercel.app',
     ],
     remotePatterns: [
       {

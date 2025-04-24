@@ -9,7 +9,7 @@ export const getImagePath = (imageName: string) => {
   if (process.env.NODE_ENV === "development") {
     return `/images/${imageName}`;
   } else {
-    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/assets/images/${imageName}`;
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/images/${imageName}`;
   }
 };
 
