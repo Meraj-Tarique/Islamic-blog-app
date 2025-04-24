@@ -29,7 +29,7 @@
 //   subcategories: SubCategory[];
 // }
 
-// async function fetchBlog(slug: string): Promise<Blog | null> {
+// async function fetchBlog(slug: string): Promise< | null> {
 //   const baseUrl = getBaseUrl();
 
 //   const apiUrl = `${baseUrl}/api/blogs/${slug}`;
@@ -41,7 +41,7 @@
 //       cache: "no-store",
 //     });
 //     console.log("apiUrl", apiUrl);
-    
+
 //     if (!res.ok) {
 //       throw new Error(`Failed to fetch blog: ${res.status} ${res.statusText}`);
 //     }
@@ -115,10 +115,8 @@
 
 // export default BlogDetailPage;
 
-
-import { notFound } from 'next/navigation';
-import styles from '@/styles/missionStyle.module.css';
-import { getBaseUrl } from '@/helpers/utils';
+import styles from "@/styles/missionStyle.module.css";
+import { getBaseUrl } from "@/helpers/utils";
 
 interface SubSubCategory {
   subHeading?: string;
@@ -151,7 +149,8 @@ interface Blog {
 // Add revalidation time (in seconds)
 export const revalidate = 3600; // Revalidate every hour
 
-async function fetchBlog(slug: string): Promise<Blog> {
+// async function fetchBlog(slug: string): Promise<Blog> {
+async function fetchBlog(slug: string): Promise<Blog | null> {
   const baseUrl = getBaseUrl();
   const apiUrl = `${baseUrl}/api/blogs/${slug}`;
 
@@ -171,20 +170,19 @@ async function fetchBlog(slug: string): Promise<Blog> {
     throw error; // Will be caught by the error boundary
   }
 }
-
-export default async function BlogDetailPage({
+export const BlogDetailPage = async ({
   params,
 }: {
-  params: { slug: string };
-}) {
-  let blog: Blog;
+  params: Promise<{ slug: string }>;
+}) => {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
 
-  try {
-    blog = await fetchBlog(params.slug);
-  } catch (error) {
-    console.log(error);
-    
-    notFound(); 
+  const blog = await fetchBlog(slug);
+
+  if (!blog) {
+    return <div>Blog not Found!</div>;
+  }
 
   return (
     <div className="max-w-8xl mx-auto py-10 px-5">
@@ -194,62 +192,37 @@ export default async function BlogDetailPage({
             <h1 className={`text-4xl font-bold ${styles.textStyle}`}>
               {blog.title}
             </h1>
-            <div className="mt-2 flex gap-4 text-xl">
-              <p>
-                Author: <span className="font-semibold">{blog.author}</span>
-              </p>
-              <p>
-                Views: <span className="font-semibold">{blog.views}</span>
-              </p>
-            </div>
+            <p className="mt-2 text-xl">
+              Category:{" "}
+              <span className="font-semibold textStyle">Technology</span>
+            </p>
           </div>
 
           <div className="p-6 space-y-6">
-            {blog.content.map((item, index) => (
-              <section key={`${item.heading}-${index}`} className="space-y-4">
-                <h2 className="text-3xl font-semibold">{item.heading}</h2>
-                {item.description && (
-                  <p className="text-lg text-gray-700">{item.description}</p>
-                )}
+            {blog.content.map((item: ContentSection, ind: number) => (
+              <div className="space-y-4" key={ind}>
+                <h2 className="text-3xl font-semibold">{item?.heading}</h2>
+                <p className="text-lg text-gray-700"></p>
 
-                {item.subcategories.map((subcategory, subIndex) => (
+                {item?.subcategories.map((value, key) => (
                   <div
                     className="bg-gray-100 p-4 rounded-lg shadow-sm"
-                    key={`${subcategory.subHeading}-${subIndex}`}
+                    key={key}
                   >
                     <h3 className="text-xl font-semibold">
-                      {subcategory.subHeading}
+                      {value.subHeading}
                     </h3>
-                    <p className="mt-2 text-gray-700">
-                      {subcategory.subDescription}
-                    </p>
-                    
-                    {/* Render nested subcategories if they exist */}
-                    {subcategory.subCategories?.map((nested, nestedIndex) => (
-                      <div key={`nested-${nestedIndex}`} className="mt-3 pl-4 border-l-2 border-gray-300">
-                        {nested.subHeading && (
-                          <h4 className="text-lg font-medium">
-                            {nested.subHeading}
-                          </h4>
-                        )}
-                        {nested.subDescription && (
-                          <p className="text-gray-600">
-                            {nested.subDescription}
-                          </p>
-                        )}
-                      </div>
-                    ))}
+                    <p className="mt-2 text-gray-700">{value.subDescription}</p>
                   </div>
                 ))}
-              </section>
+              </div>
             ))}
           </div>
         </div>
       </div>
     </div>
   );
-}
-}
+};
 
 // Generate metadata for SEO
 export async function generateMetadata({
@@ -261,7 +234,7 @@ export async function generateMetadata({
 
   if (!blog) {
     return {
-      title: 'Blog Not Found',
+      title: "Blog Not Found",
     };
   }
 
@@ -269,7 +242,7 @@ export async function generateMetadata({
     title: blog.title,
     description: blog.content[0]?.description || blog.heading,
     openGraph: {
-      type: 'article',
+      type: "article",
       publishedTime: new Date().toISOString(),
       authors: [blog.author],
     },
