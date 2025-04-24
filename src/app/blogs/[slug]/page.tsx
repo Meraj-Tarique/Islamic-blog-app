@@ -224,27 +224,4 @@ const BlogDetailPage = async ({
   );
 };
 export default BlogDetailPage;
-// Generate metadata for SEO
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const blog = await fetchBlog(params.slug).catch(() => null);
 
-  if (!blog) {
-    return {
-      title: "Blog Not Found",
-    };
-  }
-
-  return {
-    title: blog.title,
-    description: blog.content[0]?.description || blog.heading,
-    openGraph: {
-      type: "article",
-      publishedTime: new Date().toISOString(),
-      authors: [blog.author],
-    },
-  };
-}
