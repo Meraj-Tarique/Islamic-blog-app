@@ -6,6 +6,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Islamic Center</title>
+        
         <meta
           name="description"
           content="A brief description of your website."

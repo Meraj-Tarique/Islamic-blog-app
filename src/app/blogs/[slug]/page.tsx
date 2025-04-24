@@ -184,8 +184,7 @@ export default async function BlogDetailPage({
   } catch (error) {
     console.log(error);
     
-    notFound(); // Return 404 page if blog not found
-  }
+    notFound(); 
 
   return (
     <div className="max-w-8xl mx-auto py-10 px-5">
