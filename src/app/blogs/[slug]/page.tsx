@@ -249,6 +249,7 @@ export default async function BlogDetailPage({
     </div>
   );
 }
+}
 
 // Generate metadata for SEO
 export async function generateMetadata({
