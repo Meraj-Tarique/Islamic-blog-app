@@ -170,7 +170,7 @@ async function fetchBlog(slug: string): Promise<Blog | null> {
     throw error; // Will be caught by the error boundary
   }
 }
-export const BlogDetailPage = async ({
+const BlogDetailPage = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
@@ -223,7 +223,7 @@ export const BlogDetailPage = async ({
     </div>
   );
 };
-
+export default BlogDetailPage;
 // Generate metadata for SEO
 export async function generateMetadata({
   params,
