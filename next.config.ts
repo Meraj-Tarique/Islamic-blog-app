@@ -12,11 +12,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "s3.amazonaws.com",
-        pathname: "/my-bucket/**",
       },
       {
         protocol: "https",
         hostname: "islamic-blog-app-spzz.vercel.app",
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
       },
     ],
   },

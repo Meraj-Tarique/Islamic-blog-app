@@ -45,6 +45,7 @@ export default function Services() {
       slug: "",
     },
   ];
+  console.log(getImagePath("quran-rehal.svg"));
 
   const handleBlogsRoute = (slug: string) => {
     router.push(`/blogs/${slug}`);
