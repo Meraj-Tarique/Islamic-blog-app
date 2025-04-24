@@ -181,7 +181,9 @@ export default async function BlogDetailPage({
 
   try {
     blog = await fetchBlog(params.slug);
-  } catch () {
+  } catch (error) {
+    console.log(error);
+    
     notFound(); // Return 404 page if blog not found
   }
 
