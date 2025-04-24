@@ -33,13 +33,15 @@ async function fetchBlog(slug: string): Promise<Blog | null> {
   const baseUrl = getBaseUrl();
 
   const apiUrl = `${baseUrl}/api/blogs/${slug}`;
+  console.log(baseUrl);
 
   try {
     const res = await fetch(apiUrl, {
       method: "GET",
       cache: "no-store",
     });
-
+    console.log("apiUrl", apiUrl);
+    
     if (!res.ok) {
       throw new Error(`Failed to fetch blog: ${res.status} ${res.statusText}`);
     }

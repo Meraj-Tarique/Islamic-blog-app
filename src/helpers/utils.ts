@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const getImagePath = (imageName: string) => {
   if (process.env.NODE_ENV === "development") {
-    return `/images/${imageName}`;
+    return `/assets/images/${imageName}`;
   } else {
     return `assets/images/${imageName}`;
   }
