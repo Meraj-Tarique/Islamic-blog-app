@@ -1,12 +1,14 @@
 import Head from "next/head";
 import HomePage from "@/components/dashboard/index";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
     <div>
       <Head>
         <title>Islamic Center</title>
-        
+
         <meta
           name="description"
           content="A brief description of your website."
@@ -22,7 +24,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen">
+        <Header />
         <HomePage />
+        <Footer />
       </main>
     </div>
   );

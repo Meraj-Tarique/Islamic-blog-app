@@ -117,6 +117,7 @@
 
 import styles from "@/styles/missionStyle.module.css";
 import { getBaseUrl } from "@/helpers/utils";
+import { notFound } from "next/navigation";
 
 interface SubSubCategory {
   subHeading?: string;
@@ -144,6 +145,7 @@ interface Blog {
   heading: string;
   content: ContentSection[];
   subcategories: SubCategory[];
+  error: string;
 }
 
 // Add revalidation time (in seconds)
@@ -159,12 +161,13 @@ async function fetchBlog(slug: string): Promise<Blog | null> {
       method: "GET",
       next: { tags: [`blog-${slug}`] }, // For on-demand revalidation
     });
+    console.log(res);
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch blog: ${res.status}`);
+    if (!res) {
+      throw new Error(`Failed to fetch blog`);
     }
 
-    return await res.json();
+    return res.json();
   } catch (error) {
     console.error("Error fetching blog:", error);
     throw error; // Will be caught by the error boundary
@@ -179,9 +182,10 @@ const BlogDetailPage = async ({
   const { slug } = resolvedParams;
 
   const blog = await fetchBlog(slug);
+  console.log(blog);
 
-  if (!blog) {
-    return <div>Blog not Found!</div>;
+  if (blog?.error) {
+    return notFound();
   }
 
   return (
@@ -190,7 +194,7 @@ const BlogDetailPage = async ({
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="bg-white-600 text-white p-6 items-center">
             <h1 className={`text-4xl font-bold ${styles.textStyle}`}>
-              {blog.title}
+              {blog?.title}
             </h1>
             <p className="mt-2 text-xl">
               Category:{" "}
@@ -199,7 +203,7 @@ const BlogDetailPage = async ({
           </div>
 
           <div className="p-6 space-y-6">
-            {blog.content.map((item: ContentSection, ind: number) => (
+            {blog?.content?.map((item: ContentSection, ind: number) => (
               <div className="space-y-4" key={ind}>
                 <h2 className="text-3xl font-semibold">{item?.heading}</h2>
                 <p className="text-lg text-gray-700"></p>
@@ -224,4 +228,3 @@ const BlogDetailPage = async ({
   );
 };
 export default BlogDetailPage;
-
